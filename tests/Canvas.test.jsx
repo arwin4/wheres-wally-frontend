@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import Canvas from '../src/components/Canvas';
+import App from '../src/views/App';
 
 describe('Canvas', () => {
-  beforeEach(() => render(<Canvas />));
+  beforeEach(() => render(<App />));
 
   it('renders image', () => {
     expect(
