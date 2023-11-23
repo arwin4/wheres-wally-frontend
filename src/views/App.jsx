@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Canvas from '../components/Canvas';
 
 function App() {
-  return <>Home</>;
+  const [clickCoordinates, setClickCoordinates] = useState({});
+  return <Canvas setClickCoordinates={setClickCoordinates} />;
 }
 
 export default App;
