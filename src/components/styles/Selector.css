@@ -1,7 +1,11 @@
+:root {
+  --selector-size: 75px;
+}
+
 .selector {
   position: absolute;
+  color: snow;
 
-  width: 200px;
-  height: 400px;
-  background-color: whitesmoke;
+  width: var(--selector-size);
+  height: var(--selector-size);
 }

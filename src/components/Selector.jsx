@@ -2,21 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './styles/Selector.css';
-import { X } from 'lucide-react';
+import { X, CircleDashed } from 'lucide-react';
 
 export default function Selector({ clickCoordinates, setSelectorVisible }) {
   const { x, y } = clickCoordinates;
+  const selectorSize = 75;
   return (
-    <div className="selector" style={{ top: y, left: x }}>
-      test
-      <button
-        type="button"
-        aria-label="Close selector"
-        className="selector-close generic-button"
-        onClick={() => setSelectorVisible(false)}
-      >
-        <X />
-      </button>
+    <div
+      className="selector"
+      style={{ top: y - selectorSize / 2, left: x - selectorSize / 2 }}
+    >
+      <CircleDashed size={selectorSize} strokeWidth={2.5} />
     </div>
   );
 }
