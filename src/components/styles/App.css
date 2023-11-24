@@ -20,3 +20,8 @@
     background-color: hsl(0, 0%, 75%);
   }
 }
+
+.noselect {
+  /* Prevent search image from getting blue selection overlay when double clicking on it */
+  user-select: none;
+}

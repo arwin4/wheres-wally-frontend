@@ -20,7 +20,7 @@ export default function Canvas() {
   }, []);
 
   return (
-    <div className="image-container">
+    <div className="image-container noselect">
       <img
         className="search-image"
         src="assets/megapark-horizontal-crop.png"
