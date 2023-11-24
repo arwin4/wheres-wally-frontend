@@ -6,6 +6,8 @@ import Selector from './Selector';
 export default function Canvas() {
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
+
+  // Save click coordinates
   useEffect(() => {
     const image = document.querySelector('.search-image');
     image.addEventListener('click', (e) => {
