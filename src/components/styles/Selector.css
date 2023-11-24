@@ -1,11 +1,14 @@
-:root {
-  --selector-size: 75px;
+.selector-wrapper {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+
+  color: snow;
 }
 
-.selector {
-  position: absolute;
-  color: snow;
-
-  width: var(--selector-size);
-  height: var(--selector-size);
+.selector-menu {
+  display: grid;
+  color: black;
+  width: 150px;
+  background-color: white;
 }
