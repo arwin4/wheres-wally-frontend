@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Canvas from '../components/Canvas';
 
+import '../components/styles/App.css';
+
 function App() {
-  const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
-  return (
-    <Canvas
-      clickCoordinates={clickCoordinates}
-      setClickCoordinates={setClickCoordinates}
-    />
-  );
+  return <Canvas />;
 }
 
 export default App;
