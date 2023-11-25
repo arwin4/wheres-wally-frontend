@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import '../styles/SelectorPopup.css';
-import { X, CircleDashed } from 'lucide-react';
+import { Icon } from '@iconify/react';
+
 import SelectionCarousel from './SelectionCarousel';
 
 export default function SelectorPopup({
@@ -13,7 +14,7 @@ export default function SelectorPopup({
 
   // Selector dimensions
   const selectorIconSize = 75;
-  const selectorWrapperWidth = 150;
+  const selectorWrapperWidth = 200;
   const selectorWrapperHeight = 200;
   const rowGap = 10;
   // Menu is below selector icon by default
@@ -39,14 +40,19 @@ export default function SelectorPopup({
         rowGap,
       }}
     >
-      <CircleDashed
+      <Icon
         className="selector-icon"
-        size={selectorIconSize}
-        strokeWidth={2.5}
+        icon="pixelarticons:circle"
+        width={selectorIconSize}
       />
+
       <div
         className="selector-menu"
-        style={{ height: selectorWrapperHeight, order: selectorMenuOrder }}
+        style={{
+          height: selectorWrapperHeight,
+          width: selectorWrapperWidth,
+          order: selectorMenuOrder,
+        }}
       >
         <button
           type="button"
@@ -54,7 +60,7 @@ export default function SelectorPopup({
           className="selector-close generic-button"
           onClick={() => setSelectorVisible(false)}
         >
-          <X />
+          <Icon icon="pixelarticons:close" height={50} />
         </button>
         <SelectionCarousel />
       </div>
