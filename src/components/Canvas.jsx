@@ -37,10 +37,3 @@ export default function Canvas() {
     </div>
   );
 }
-
-Canvas.propTypes = {
-  clickCoordinates: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-  }).isRequired,
-};
