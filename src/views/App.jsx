@@ -1,8 +1,12 @@
 import React from 'react';
+import preloadIcons from '../utils/preloadIcons';
 import Canvas from '../components/Canvas';
-import './styles/App.css';
+
+import '../components/styles/App.css';
 
 function App() {
+  preloadIcons();
+
   return <Canvas />;
 }
 

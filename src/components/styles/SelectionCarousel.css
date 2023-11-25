@@ -1,0 +1,6 @@
+.selection-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  /* justify-content: center; */
+  grid-template-columns: repeat(2, fit-content);
+}

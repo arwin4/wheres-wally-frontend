@@ -1,0 +1,22 @@
+.selector-popup {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+
+  color: snow;
+}
+
+.selector-menu {
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+
+  color: black;
+  background-color: white;
+
+  > .selector-close {
+    width: 25px;
+  }
+}
