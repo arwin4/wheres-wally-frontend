@@ -20,12 +20,34 @@ export default function Canvas() {
     });
   }, []);
 
+  // Pan image on mouse drag
+  useEffect(() => {
+    // TODO: Fix panning too fast
+    const imageContainer = document.querySelector('.image-container');
+
+    let isDragging = false;
+    imageContainer.addEventListener('mousedown', () => {
+      isDragging = true;
+    });
+    imageContainer.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    imageContainer.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        imageContainer.scrollTop -= e.movementY;
+        imageContainer.scrollLeft -= e.movementX;
+      }
+    });
+  }, []);
+
   return (
     <div className="image-container noselect">
       <img
         className="search-image"
         src="assets/megapark-horizontal-crop.png"
         alt="Section of big park in Rollercoaster Tycoon"
+        draggable="false"
       />
       {selectorVisible && (
         <SelectorPopup
