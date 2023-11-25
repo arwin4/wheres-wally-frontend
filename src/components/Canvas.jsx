@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './styles/Canvas.css';
-import Selector from './Selector';
+import SelectorPopup from './selector/SelectorPopup';
 
 export default function Canvas() {
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
@@ -29,7 +29,7 @@ export default function Canvas() {
         alt="Section of big park in Rollercoaster Tycoon"
       />
       {selectorVisible && (
-        <Selector
+        <SelectorPopup
           clickCoordinates={clickCoordinates}
           setSelectorVisible={setSelectorVisible}
         />

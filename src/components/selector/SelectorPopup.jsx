@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './styles/Selector.css';
+import '../styles/SelectorPopup.css';
 import { X, CircleDashed } from 'lucide-react';
+import SelectionCarousel from './SelectionCarousel';
 
-export default function Selector({ clickCoordinates, setSelectorVisible }) {
+export default function SelectorPopup({
+  clickCoordinates,
+  setSelectorVisible,
+}) {
   const { x, y } = clickCoordinates;
 
   // Selector dimensions
@@ -28,7 +32,7 @@ export default function Selector({ clickCoordinates, setSelectorVisible }) {
 
   return (
     <div
-      className="selector-wrapper"
+      className="selector-popup"
       style={{
         top: selectorWrapperTop,
         left: selectorWrapperLeft,
@@ -52,14 +56,13 @@ export default function Selector({ clickCoordinates, setSelectorVisible }) {
         >
           <X />
         </button>
-        <div className="item-1">One</div>
-        <div className="item-2">Two</div>
+        <SelectionCarousel />
       </div>
     </div>
   );
 }
 
-Selector.propTypes = {
+SelectorPopup.propTypes = {
   clickCoordinates: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
