@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 
 import '../styles/SelectionCarousel.css';
@@ -6,8 +6,14 @@ import '../styles/SelectionCarousel.css';
 import itemList from '../../data/itemList';
 
 export default function SelectionCarousel() {
-  const [imageIndex, setImageIndex] = useState(0);
+  // Cache all images in carousel on first open
+  useEffect(() => {
+    itemList.forEach((item) => {
+      new Image().src = item.imageUrl;
+    });
+  }, []);
 
+  const [imageIndex, setImageIndex] = useState(0);
   const hasPrevious = imageIndex > 0;
   const hasNext = imageIndex < itemList.length - 1;
 
