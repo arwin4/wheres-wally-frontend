@@ -6,10 +6,37 @@ export default function Canvas() {
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
 
-  // Save click coordinates
   useEffect(() => {
-    const image = document.querySelector('.search-image');
-    image.addEventListener('click', (e) => {
+    // TODO: Fix panning too fast
+
+    const imageContainer = document.querySelector('.image-container');
+
+    // Pan image on mouse drag
+    let isMouseDown = false;
+    let wasDragged = false;
+
+    imageContainer.addEventListener('mousedown', () => {
+      isMouseDown = true;
+      wasDragged = false; // Reset on mousedown, or selector will never open
+    });
+
+    imageContainer.addEventListener('mouseup', () => {
+      isMouseDown = false;
+    });
+
+    imageContainer.addEventListener('mousemove', (e) => {
+      if (isMouseDown) {
+        imageContainer.scrollTop -= e.movementY;
+        imageContainer.scrollLeft -= e.movementX;
+        wasDragged = true;
+      }
+    });
+
+    // Save click coordinates
+    imageContainer.addEventListener('click', (e) => {
+      // Prevent selector from showing on the end of a drag
+      if (wasDragged) return;
+
       // Source for calculation: https://stackoverflow.com/a/42111623/22857578
       const rect = e.target.getBoundingClientRect();
       setClickCoordinates({
@@ -17,27 +44,6 @@ export default function Canvas() {
         y: e.clientY - rect.top,
       });
       setSelectorVisible(true);
-    });
-  }, []);
-
-  // Pan image on mouse drag
-  useEffect(() => {
-    // TODO: Fix panning too fast
-    const imageContainer = document.querySelector('.image-container');
-
-    let isDragging = false;
-    imageContainer.addEventListener('mousedown', () => {
-      isDragging = true;
-    });
-    imageContainer.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    imageContainer.addEventListener('mousemove', (e) => {
-      if (isDragging) {
-        imageContainer.scrollTop -= e.movementY;
-        imageContainer.scrollLeft -= e.movementX;
-      }
     });
   }, []);
 
