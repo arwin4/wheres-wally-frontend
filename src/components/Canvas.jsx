@@ -33,12 +33,13 @@ export default function Canvas() {
     });
 
     // Save click coordinates
-    imageContainer.addEventListener('click', (e) => {
+    const image = document.querySelector('.search-image');
+    const rect = image.getBoundingClientRect();
+    image.addEventListener('click', (e) => {
       // Prevent selector from showing on the end of a drag
       if (wasDragged) return;
 
       // Source for calculation: https://stackoverflow.com/a/42111623/22857578
-      const rect = e.target.getBoundingClientRect();
       setClickCoordinates({
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
