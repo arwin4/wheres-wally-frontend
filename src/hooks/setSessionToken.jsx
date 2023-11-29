@@ -8,7 +8,7 @@ export default function setSessionToken() {
       try {
         const response = await fetch(`http://localhost:3000/tokens/session`);
         if (!response.ok) {
-          throw new Error('Unable to fetch user token from API');
+          throw new Error('Unable to fetch session token from API');
         }
         const responseBody = await response.json();
         const token = responseBody.sessionToken;
