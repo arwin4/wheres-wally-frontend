@@ -3,11 +3,11 @@ import preloadIcons from '../utils/preloadIcons';
 import Canvas from '../components/Canvas';
 
 import '../components/styles/App.css';
-import setNewToken from '../hooks/setNewToken';
+import setSessionToken from '../hooks/setSessionToken';
 
 function App() {
   preloadIcons();
-  setNewToken();
+  setSessionToken();
 
   return (
     <>
