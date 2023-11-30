@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import preloadIcons from '../utils/preloadIcons';
 import Canvas from '../components/Canvas';
 
@@ -13,18 +13,28 @@ function App() {
   preloadSearchImage();
   setSessionToken();
 
+  const [gameOngoing, setGameOngoing] = useState(false);
+
   // userToken is persistent across reloads
   if (!localStorage.getItem('userToken')) setUserToken();
 
-  return (
-    <>
-      <Canvas />
-      <div className="credit">
-        <a href="https://www.youtube.com/watch?v=BR3kGw_FMOM">Image credit.</a>
-        {'  '} Used with permission.
-      </div>
-    </>
-  );
+  if (gameOngoing) {
+    return <Canvas />;
+  }
+
+  if (!gameOngoing) {
+    return (
+      <>
+        <Start setGameOngoing={setGameOngoing} />
+        <div className="credit">
+          <a href="https://www.youtube.com/watch?v=BR3kGw_FMOM">
+            Image credit.
+          </a>
+          {'  '} Used with permission.
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;
