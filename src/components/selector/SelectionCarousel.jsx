@@ -3,19 +3,19 @@ import { Icon } from '@iconify/react';
 
 import '../styles/SelectionCarousel.css';
 
-import itemList from '../../data/itemList';
+import wallyList from '../../data/wallyList';
 
 export default function SelectionCarousel() {
   // Cache all images in carousel on first open
   useEffect(() => {
-    itemList.forEach((item) => {
-      new Image().src = item.imageUrl;
+    wallyList.forEach((wally) => {
+      new Image().src = wally.imageUrl;
     });
   }, []);
 
   const [imageIndex, setImageIndex] = useState(0);
   const hasPrevious = imageIndex > 0;
-  const hasNext = imageIndex < itemList.length - 1;
+  const hasNext = imageIndex < wallyList.length - 1;
 
   function handleNextImage() {
     if (hasNext) setImageIndex(imageIndex + 1);
@@ -37,8 +37,8 @@ export default function SelectionCarousel() {
       </button>
       <img
         className="selection-image"
-        src={itemList[imageIndex].imageUrl}
-        alt={itemList[imageIndex].name}
+        src={wallyList[imageIndex].imageUrl}
+        alt={wallyList[imageIndex].name}
       />
       <button
         type="button"
