@@ -5,9 +5,12 @@ import Canvas from '../components/Canvas';
 import '../components/styles/App.css';
 import setSessionToken from '../hooks/setSessionToken';
 import setUserToken from '../hooks/setUserToken';
+import Start from '../components/Start';
+import preloadSearchImage from '../utils/preloadSearchImage';
 
 function App() {
   preloadIcons();
+  preloadSearchImage();
   setSessionToken();
 
   // userToken is persistent across reloads
