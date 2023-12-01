@@ -19,7 +19,7 @@ export default function SelectionMessage({
     message = `That's not a 'wally'! Or you did not identify it correctly.`;
   }
 
-  if (wallyValid && gameFinished) {
+  if (wallyValid && !gameFinished) {
     // TODO: number
     message = `Nice! (number) more to go!`;
   }
