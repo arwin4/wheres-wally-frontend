@@ -9,6 +9,9 @@ import SelectionCarousel from './SelectionCarousel';
 export default function SelectorPopup({
   clickCoordinates,
   setSelectorVisible,
+  setSelectionMessageVisible,
+  wallyVerification,
+  setWallyVerification,
 }) {
   const { x, y } = clickCoordinates;
 
@@ -62,7 +65,13 @@ export default function SelectorPopup({
         >
           <Icon icon="pixelarticons:close" height={50} />
         </button>
-        <SelectionCarousel />
+        <SelectionCarousel
+          clickCoordinates={clickCoordinates}
+          setSelectorVisible={setSelectorVisible}
+          setSelectionMessageVisible={setSelectionMessageVisible}
+          wallyVerification={wallyVerification}
+          setWallyVerification={setWallyVerification}
+        />
       </div>
     </div>
   );
@@ -74,4 +83,7 @@ SelectorPopup.propTypes = {
     y: PropTypes.number,
   }).isRequired,
   setSelectorVisible: PropTypes.func.isRequired,
+  setSelectionMessageVisible: PropTypes.func.isRequired,
+  setWallyVerification: PropTypes.func.isRequired,
+  wallyVerification: PropTypes.objectOf(PropTypes.bool).isRequired,
 };

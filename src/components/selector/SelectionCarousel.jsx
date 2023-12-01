@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 
 import '../styles/SelectionCarousel.css';
 
 import wallyList from '../../data/wallyList';
 
-export default function SelectionCarousel() {
+export default function SelectionCarousel({
+  clickCoordinates,
+  setSelectorVisible,
+  setSelectionMessageVisible,
+  setWallyVerification,
+}) {
   // Cache all images in carousel on first open
   useEffect(() => {
     wallyList.forEach((wally) => {
@@ -25,6 +31,40 @@ export default function SelectionCarousel() {
     if (hasPrevious) setImageIndex(imageIndex - 1);
   }
 
+  async function handleWallySelection(wallyName) {
+    const response = await fetch(`http://localhost:3000/wallies`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        clickCoordinates,
+        wallyName,
+        userToken: localStorage.getItem('userToken'),
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('Unable to verify your selection');
+    }
+    const body = await response.json();
+    console.log(body);
+    setWallyVerification(body);
+    setSelectionMessageVisible(true);
+    setSelectorVisible(false);
+  }
+
+  // send put request to verify-wally
+  // possible responses:
+  //  - wally: false, finished: false
+  //    -> show toast: 'That's not a 'wally'! Or you did not identify it correctly.'
+  //       close popup (setSelectorVisible(false))
+  //  - wally: true, finished: false
+  //    -> show toast: 'Nice! (number) more to go'
+  //       close popup (setSelectorVisible(false))
+  //  - wally: true, finished: true
+  //    -> show toast: 'Well done! You've found all 'wallies'!
+  //       render results screen
+
   return (
     <div className="selection-carousel">
       <button
@@ -35,11 +75,16 @@ export default function SelectionCarousel() {
       >
         <Icon icon="pixelarticons:chevron-left" height={50} />
       </button>
-      <img
-        className="selection-image"
-        src={wallyList[imageIndex].imageUrl}
-        alt={wallyList[imageIndex].name}
-      />
+      <button
+        type="button"
+        onClick={() => handleWallySelection(wallyList[imageIndex].name)}
+      >
+        <img
+          className="selection-image"
+          src={wallyList[imageIndex].imageUrl}
+          alt={wallyList[imageIndex].name}
+        />
+      </button>
       <button
         type="button"
         aria-label="Next image"
@@ -51,3 +96,10 @@ export default function SelectionCarousel() {
     </div>
   );
 }
+
+SelectionCarousel.propTypes = {
+  setSelectorVisible: PropTypes.func.isRequired,
+  setSelectionMessageVisible: PropTypes.func.isRequired,
+  clickCoordinates: PropTypes.objectOf(PropTypes.number).isRequired,
+  setWallyVerification: PropTypes.func.isRequired,
+};
