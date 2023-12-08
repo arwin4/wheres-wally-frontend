@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import toast, { Toaster } from 'react-hot-toast';
 
 import '../styles/SelectionCarousel.css';
 
 import wallyList from '../../data/wallyList';
 
-export default function SelectionCarousel({ clickCoordinates }) {
+export default function SelectionCarousel({
+  clickCoordinates,
+  handleWallySelection,
+}) {
   // Cache all images in carousel on first open
   useEffect(() => {
     wallyList.forEach((wally) => {
@@ -25,40 +27,6 @@ export default function SelectionCarousel({ clickCoordinates }) {
 
   function handlePreviousImage() {
     if (hasPrevious) setImageIndex(imageIndex - 1);
-  }
-
-  async function handleWallySelection(wallyName) {
-    const response = await fetch(`http://localhost:3000/wallies`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        clickCoordinates,
-        wallyName,
-        userToken: localStorage.getItem('userToken'),
-      }),
-    });
-    if (!response.ok) {
-      throw new Error('Unable to verify your selection');
-    }
-    const body = await response.json();
-    const { wallyValid, gameFinished } = body;
-
-    if (!wallyValid) {
-      toast.error(
-        `That's not a 'wally'! Or you did not identify it correctly.`,
-      );
-    }
-
-    if (wallyValid && !gameFinished) {
-      // TODO: Add number
-      toast.success('Nice! (number) more to go!');
-    }
-
-    if (gameFinished) {
-      toast.success('Finished!');
-    }
   }
 
   // send put request to verify-wally
@@ -85,7 +53,9 @@ export default function SelectionCarousel({ clickCoordinates }) {
       </button>
       <button
         type="button"
-        onClick={() => handleWallySelection(wallyList[imageIndex].name)}
+        onClick={() =>
+          handleWallySelection(wallyList[imageIndex].name, clickCoordinates)
+        }
       >
         <img
           className="selection-image"
@@ -101,11 +71,11 @@ export default function SelectionCarousel({ clickCoordinates }) {
       >
         <Icon icon="pixelarticons:chevron-right" height={50} />
       </button>
-      <Toaster />
     </div>
   );
 }
 
 SelectionCarousel.propTypes = {
   clickCoordinates: PropTypes.objectOf(PropTypes.number).isRequired,
+  handleWallySelection: PropTypes.func.isRequired,
 };

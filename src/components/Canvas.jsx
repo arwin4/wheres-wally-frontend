@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import './styles/Canvas.css';
 import toast, { Toaster } from 'react-hot-toast';
 import SelectorPopup from './selector/SelectorPopup';
@@ -50,6 +50,47 @@ export default function Canvas() {
     });
   }, []);
 
+  const handleWallySelection = useCallback(
+    async (wallyName, newClickCoordinates) => {
+      const response = await fetch(`http://localhost:3000/wallies`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          clickCoordinates: newClickCoordinates,
+          wallyName,
+          userToken: localStorage.getItem('userToken'),
+        }),
+      });
+      if (!response.ok) {
+        throw new Error('Unable to verify your selection');
+      }
+      const body = await response.json();
+      const { wallyValid, gameFinished } = body;
+
+      if (!wallyValid) {
+        toast.error(
+          `That's not a 'wally'! Or you did not identify it correctly.`,
+          { duration: 3000, id: 'wallyVerification' },
+        );
+      }
+
+      if (wallyValid && !gameFinished) {
+        // TODO: Add number
+        toast.success('Nice! (number) more to go!', {
+          duration: 3000,
+          id: 'wallyVerification',
+        });
+      }
+
+      if (gameFinished) {
+        toast.success('Finished!', { duration: 3000, id: 'wallyVerification' });
+      }
+    },
+    [],
+  );
+
   return (
     <div className="image-container noselect">
       <img
@@ -62,8 +103,10 @@ export default function Canvas() {
         <SelectorPopup
           clickCoordinates={clickCoordinates}
           setSelectorVisible={setSelectorVisible}
+          handleWallySelection={handleWallySelection}
         />
       )}
+      <Toaster />
     </div>
   );
 }
