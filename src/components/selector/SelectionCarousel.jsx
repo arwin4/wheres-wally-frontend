@@ -29,18 +29,6 @@ export default function SelectionCarousel({
     if (hasPrevious) setImageIndex(imageIndex - 1);
   }
 
-  // send put request to verify-wally
-  // possible responses:
-  //  - wally: false, finished: false
-  //    -> show toast: 'That's not a 'wally'! Or you did not identify it correctly.'
-  //       close popup (setSelectorVisible(false))
-  //  - wally: true, finished: false
-  //    -> show toast: 'Nice! (number) more to go'
-  //       close popup (setSelectorVisible(false))
-  //  - wally: true, finished: true
-  //    -> show toast: 'Well done! You've found all 'wallies'!
-  //       render results screen
-
   return (
     <div className="selection-carousel">
       <button
