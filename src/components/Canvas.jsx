@@ -52,6 +52,7 @@ export default function Canvas() {
 
   const handleWallySelection = useCallback(
     async (wallyName, newClickCoordinates) => {
+      setSelectorVisible(false);
       const response = await fetch(`http://localhost:3000/wallies`, {
         method: 'PUT',
         headers: {
