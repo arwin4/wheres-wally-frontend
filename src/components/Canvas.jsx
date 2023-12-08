@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './styles/Canvas.css';
+import toast, { Toaster } from 'react-hot-toast';
 import SelectorPopup from './selector/SelectorPopup';
-import SelectionMessage from './SelectionMessage';
 
 export default function Canvas() {
   // TODO: move to views/
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
-
-  const [selectionMessageVisible, setSelectionMessageVisible] = useState(false);
-  const [wallyVerification, setWallyVerification] = useState({});
 
   useEffect(() => {
     // TODO: Fix panning too fast
@@ -61,19 +58,10 @@ export default function Canvas() {
         alt="Section of big park in Rollercoaster Tycoon"
         draggable="false"
       />
-      {selectionMessageVisible && (
-        <SelectionMessage
-          wallyVerification={wallyVerification}
-          setSelectionMessageVisible={setSelectionMessageVisible}
-        />
-      )}
       {selectorVisible && (
         <SelectorPopup
           clickCoordinates={clickCoordinates}
           setSelectorVisible={setSelectorVisible}
-          setSelectionMessageVisible={setSelectionMessageVisible}
-          wallyVerification={wallyVerification}
-          setWallyVerification={setWallyVerification}
         />
       )}
     </div>

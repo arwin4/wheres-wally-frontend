@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
+import toast, { Toaster } from 'react-hot-toast';
 
 import '../styles/SelectionCarousel.css';
 
 import wallyList from '../../data/wallyList';
 
-export default function SelectionCarousel({
-  clickCoordinates,
-  setSelectorVisible,
-  setSelectionMessageVisible,
-  setWallyVerification,
-}) {
+export default function SelectionCarousel({ clickCoordinates }) {
   // Cache all images in carousel on first open
   useEffect(() => {
     wallyList.forEach((wally) => {
@@ -47,10 +43,22 @@ export default function SelectionCarousel({
       throw new Error('Unable to verify your selection');
     }
     const body = await response.json();
-    console.log(body);
-    setWallyVerification(body);
-    setSelectionMessageVisible(true);
-    setSelectorVisible(false);
+    const { wallyValid, gameFinished } = body;
+
+    if (!wallyValid) {
+      toast.error(
+        `That's not a 'wally'! Or you did not identify it correctly.`,
+      );
+    }
+
+    if (wallyValid && !gameFinished) {
+      // TODO: Add number
+      toast.success('Nice! (number) more to go!');
+    }
+
+    if (gameFinished) {
+      toast.success('Finished!');
+    }
   }
 
   // send put request to verify-wally
@@ -93,13 +101,11 @@ export default function SelectionCarousel({
       >
         <Icon icon="pixelarticons:chevron-right" height={50} />
       </button>
+      <Toaster />
     </div>
   );
 }
 
 SelectionCarousel.propTypes = {
-  setSelectorVisible: PropTypes.func.isRequired,
-  setSelectionMessageVisible: PropTypes.func.isRequired,
   clickCoordinates: PropTypes.objectOf(PropTypes.number).isRequired,
-  setWallyVerification: PropTypes.func.isRequired,
 };
