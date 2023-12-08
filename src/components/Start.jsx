@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Start({ setGameOngoing }) {
   return (
@@ -7,3 +8,7 @@ export default function Start({ setGameOngoing }) {
     </button>
   );
 }
+
+Start.propTypes = {
+  setGameOngoing: PropTypes.func.isRequired,
+};
