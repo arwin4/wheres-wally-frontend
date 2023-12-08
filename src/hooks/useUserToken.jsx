@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function setUserToken() {
+export default function useUserToken() {
   const [error, setError] = useState('');
 
   useEffect(() => {

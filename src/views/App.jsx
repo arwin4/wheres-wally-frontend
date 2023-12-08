@@ -3,20 +3,20 @@ import preloadIcons from '../utils/preloadIcons';
 import Canvas from '../components/Canvas';
 
 import '../components/styles/App.css';
-import setSessionToken from '../hooks/setSessionToken';
-import setUserToken from '../hooks/setUserToken';
+import useSessionToken from '../hooks/useSessionToken';
+import useUserToken from '../hooks/useUserToken';
 import Start from '../components/Start';
 import preloadSearchImage from '../utils/preloadSearchImage';
 
 function App() {
   preloadIcons();
   preloadSearchImage();
-  setSessionToken();
+  useSessionToken();
 
   const [gameOngoing, setGameOngoing] = useState(false);
 
   // userToken is persistent across reloads
-  if (!localStorage.getItem('userToken')) setUserToken();
+  if (!localStorage.getItem('userToken')) useUserToken();
 
   if (gameOngoing) {
     return <Canvas />;

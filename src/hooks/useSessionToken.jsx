@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function setSessionToken() {
+export default function useSessionToken() {
   const [error, setError] = useState('');
 
   useEffect(() => {
