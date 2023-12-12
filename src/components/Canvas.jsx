@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './styles/Canvas.css';
 import toast, { Toaster } from 'react-hot-toast';
 import SelectorPopup from './selector/SelectorPopup';
+import endTrackingGameDuration from '../utils/endTrackingGameDuration';
 
 export default function Canvas({ setGameOngoing, setGameFinished }) {
   // TODO: move to views/
@@ -87,12 +88,18 @@ export default function Canvas({ setGameOngoing, setGameFinished }) {
       }
 
       if (gameFinished) {
-        toast.success('Finished!', { id: 'wallyVerification' });
-        setTimeout(() => {
-          toast.remove();
-          setGameFinished(true);
-          setGameOngoing(false);
-        }, 1000);
+        try {
+          await endTrackingGameDuration();
+
+          toast.success('Finished!', { id: 'wallyVerification' });
+          setTimeout(() => {
+            toast.remove();
+            setGameFinished(true);
+            setGameOngoing(false);
+          }, 1000);
+        } catch (error) {
+          toast.error('Unable to end tracking game duration');
+        }
       }
     },
     [],

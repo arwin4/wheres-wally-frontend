@@ -8,6 +8,7 @@ import useSessionToken from '../hooks/useSessionToken';
 import useUserToken from '../hooks/useUserToken';
 import Start from '../components/Start';
 import preloadSearchImage from '../utils/preloadSearchImage';
+import startTrackingGameDuration from '../utils/startTrackingGameDuration';
 
 function App() {
   preloadIcons();
@@ -18,21 +19,23 @@ function App() {
   const [gameOngoing, setGameOngoing] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
 
+  async function markWalliesAsNotFound() {
+    const response = await fetch(`http://localhost:3000/wallies`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userToken: localStorage.getItem('userToken'),
+      }),
+    });
+
+    if (!response.ok) throw new Error();
+  }
+
   const startGame = useCallback(async () => {
-    // Mark all wallies as not found
     try {
-      const response = await fetch(`http://localhost:3000/wallies`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userToken: localStorage.getItem('userToken'),
-        }),
-      });
-
-      if (!response.ok) throw new Error();
-
+      await Promise.all([markWalliesAsNotFound(), startTrackingGameDuration()]);
       setGameOngoing(true);
     } catch (error) {
       toast.error('Unable to start game.');
