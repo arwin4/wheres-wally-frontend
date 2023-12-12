@@ -11,6 +11,7 @@ import useSessionToken from '../hooks/useSessionToken';
 import useUserToken from '../hooks/useUserToken';
 
 // Utils
+import markWalliesAsNotFound from '../utils/markWalliesAsNotFound';
 import preloadSearchImage from '../utils/preloadSearchImage';
 import startTrackingGameDuration from '../utils/startTrackingGameDuration';
 
@@ -25,20 +26,6 @@ function App() {
 
   const [gameOngoing, setGameOngoing] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
-
-  async function markWalliesAsNotFound() {
-    const response = await fetch(`http://localhost:3000/wallies`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userToken: localStorage.getItem('userToken'),
-      }),
-    });
-
-    if (!response.ok) throw new Error();
-  }
 
   const startGame = useCallback(async () => {
     try {
