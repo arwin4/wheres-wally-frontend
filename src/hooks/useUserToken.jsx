@@ -4,6 +4,9 @@ export default function useUserToken() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    // userToken is persistent across reloads
+    if (localStorage.getItem('userToken')) return;
+
     const fetchAndSetToken = async () => {
       try {
         const response = await fetch(`http://localhost:3000/tokens/user`);

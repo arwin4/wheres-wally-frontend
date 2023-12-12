@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import preloadIcons from '../utils/preloadIcons';
 import Canvas from '../components/Canvas';
 
@@ -12,11 +13,30 @@ function App() {
   preloadIcons();
   preloadSearchImage();
   useSessionToken();
+  useUserToken();
 
   const [gameOngoing, setGameOngoing] = useState(false);
 
-  // userToken is persistent across reloads
-  if (!localStorage.getItem('userToken')) useUserToken();
+  const startGame = useCallback(async () => {
+    // Mark all wallies as not found
+    try {
+      const response = await fetch(`http://localhost:3000/wallies`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userToken: localStorage.getItem('userToken'),
+        }),
+      });
+
+      if (!response.ok) throw new Error();
+
+      setGameOngoing(true);
+    } catch (error) {
+      toast.error('Unable to start game.');
+    }
+  }, []);
 
   if (gameOngoing) {
     return <Canvas />;
@@ -25,13 +45,14 @@ function App() {
   if (!gameOngoing) {
     return (
       <>
-        <Start setGameOngoing={setGameOngoing} />
+        <Start startGame={startGame} />
         <div className="credit">
           <a href="https://www.youtube.com/watch?v=BR3kGw_FMOM">
             Image credit.
           </a>
           {'  '} Used with permission.
         </div>
+        <Toaster />
       </>
     );
   }
