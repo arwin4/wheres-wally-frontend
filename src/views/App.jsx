@@ -1,14 +1,21 @@
 import React, { useCallback, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import preloadIcons from '../utils/preloadIcons';
-import Canvas from '../components/Canvas';
 
-import '../components/styles/App.css';
+// Components
+import Canvas from '../components/Canvas';
+import Start from '../components/Start';
+
+// Hooks
 import useSessionToken from '../hooks/useSessionToken';
 import useUserToken from '../hooks/useUserToken';
-import Start from '../components/Start';
+
+// Utils
 import preloadSearchImage from '../utils/preloadSearchImage';
 import startTrackingGameDuration from '../utils/startTrackingGameDuration';
+
+// Style
+import '../components/styles/App.css';
 
 function App() {
   preloadIcons();
