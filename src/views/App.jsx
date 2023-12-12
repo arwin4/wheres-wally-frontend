@@ -16,6 +16,7 @@ function App() {
   useUserToken();
 
   const [gameOngoing, setGameOngoing] = useState(false);
+  const [gameFinished, setGameFinished] = useState(false);
 
   const startGame = useCallback(async () => {
     // Mark all wallies as not found
@@ -38,11 +39,16 @@ function App() {
     }
   }, []);
 
-  if (gameOngoing) {
-    return <Canvas />;
+  if (gameOngoing && !gameFinished) {
+    return (
+      <Canvas
+        setGameOngoing={setGameOngoing}
+        setGameFinished={setGameFinished}
+      />
+    );
   }
 
-  if (!gameOngoing) {
+  if (!gameOngoing && !gameFinished) {
     return (
       <>
         <Start startGame={startGame} />
@@ -53,6 +59,23 @@ function App() {
           {'  '} Used with permission.
         </div>
         <Toaster />
+      </>
+    );
+  }
+
+  if (!gameOngoing && gameFinished) {
+    return (
+      <>
+        <h1>Finished!</h1>
+        <button
+          type="button"
+          onClick={() => {
+            setGameOngoing(false);
+            setGameFinished(false);
+          }}
+        >
+          To home
+        </button>
       </>
     );
   }

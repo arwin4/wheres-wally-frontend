@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import './styles/Canvas.css';
 import toast, { Toaster } from 'react-hot-toast';
 import SelectorPopup from './selector/SelectorPopup';
 
-export default function Canvas() {
+export default function Canvas({ setGameOngoing, setGameFinished }) {
   // TODO: move to views/
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
@@ -86,7 +87,12 @@ export default function Canvas() {
       }
 
       if (gameFinished) {
-        toast.success('Finished!', { duration: 3000, id: 'wallyVerification' });
+        toast.success('Finished!', { id: 'wallyVerification' });
+        setTimeout(() => {
+          toast.remove();
+          setGameFinished(true);
+          setGameOngoing(false);
+        }, 1000);
       }
     },
     [],
@@ -111,3 +117,8 @@ export default function Canvas() {
     </div>
   );
 }
+
+Canvas.propTypes = {
+  setGameOngoing: PropTypes.func.isRequired,
+  setGameFinished: PropTypes.func.isRequired,
+};
