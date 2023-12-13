@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default function Leaderboard({ setGameOngoing, setGameFinished }) {
+export default function Leaderboard({ setGameOngoing, setLeaderboardVisible }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [leaderboard, setLeaderboard] = useState([]);
@@ -43,7 +43,7 @@ export default function Leaderboard({ setGameOngoing, setGameFinished }) {
         type="button"
         onClick={() => {
           setGameOngoing(false);
-          setGameFinished(false);
+          setLeaderboardVisible(false);
         }}
       >
         To home
@@ -54,5 +54,5 @@ export default function Leaderboard({ setGameOngoing, setGameFinished }) {
 
 Leaderboard.propTypes = {
   setGameOngoing: PropTypes.func.isRequired,
-  setGameFinished: PropTypes.func.isRequired,
+  setLeaderboardVisible: PropTypes.func.isRequired,
 };

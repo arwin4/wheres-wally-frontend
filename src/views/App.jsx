@@ -26,7 +26,7 @@ function App() {
   useUserToken();
 
   const [gameOngoing, setGameOngoing] = useState(false);
-  const [gameFinished, setGameFinished] = useState(false);
+  const [leaderboardVisible, setLeaderboardVisible] = useState(false);
 
   const startGame = useCallback(async () => {
     try {
@@ -37,16 +37,16 @@ function App() {
     }
   }, []);
 
-  if (gameOngoing && !gameFinished) {
+  if (gameOngoing && !leaderboardVisible) {
     return (
       <Canvas
         setGameOngoing={setGameOngoing}
-        setGameFinished={setGameFinished}
+        setGameFinished={setLeaderboardVisible}
       />
     );
   }
 
-  if (!gameOngoing && !gameFinished) {
+  if (!gameOngoing && !leaderboardVisible) {
     return (
       <>
         <Start startGame={startGame} />
@@ -61,11 +61,11 @@ function App() {
     );
   }
 
-  if (!gameOngoing && gameFinished) {
+  if (!gameOngoing && leaderboardVisible) {
     return (
       <Leaderboard
         setGameOngoing={setGameOngoing}
-        setGameFinished={setGameFinished}
+        setGameFinished={setLeaderboardVisible}
       />
     );
   }
