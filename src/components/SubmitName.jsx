@@ -1,11 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function SubmitName({
   setSubmitNameVisible,
   setLeaderboardVisible,
 }) {
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [score, setScore] = useState('');
+
+  useEffect(() => {
+    const getUserScore = async () => {
+      try {
+        const userToken = localStorage.getItem('userToken');
+        const response = await fetch(
+          `http://localhost:3000/user/score/${userToken}`,
+          {
+            method: 'GET',
+          },
+        );
+
+        const responseBody = await response.json();
+        setScore(responseBody.formattedScore);
+        setLoading(false);
+        setError('');
+      } catch (err) {
+        setError('Unable to fetch user score');
+      } finally {
+        setLoading(false);
+      }
+    };
+    getUserScore();
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,9 +56,12 @@ export default function SubmitName({
     }
   }
 
+  if (loading) return <>Loading...</>;
+
   return (
     <div className="name-form-container">
       <h1>Congrats! You found them all!</h1>
+      <h2>It took you {score}.</h2>
       <h2>Enter your name to get your score on the public leaderboard.</h2>
       <form onSubmit={handleSubmit}>
         <div>
