@@ -6,9 +6,9 @@ import preloadIcons from '../utils/preloadIcons';
 import Canvas from '../components/Canvas';
 import Start from '../components/Start';
 import Leaderboard from '../components/Leaderboard';
+import SubmitName from '../components/SubmitName';
 
 // Hooks
-import useSessionToken from '../hooks/useSessionToken';
 import useUserToken from '../hooks/useUserToken';
 
 // Utils
@@ -22,10 +22,10 @@ import '../components/styles/App.css';
 function App() {
   preloadIcons();
   preloadSearchImage();
-  useSessionToken();
   useUserToken();
 
   const [gameOngoing, setGameOngoing] = useState(false);
+  const [submitNameVisible, setSubmitNameVisible] = useState(false);
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
 
   const startGame = useCallback(async () => {
@@ -36,6 +36,15 @@ function App() {
       toast.error('Unable to start game.');
     }
   }, []);
+
+  if (submitNameVisible) {
+    return (
+      <SubmitName
+        setSubmitNameVisible={setSubmitNameVisible}
+        setLeaderboardVisible={setLeaderboardVisible}
+      />
+    );
+  }
 
   if (leaderboardVisible) {
     return (
@@ -50,7 +59,7 @@ function App() {
     return (
       <Canvas
         setGameOngoing={setGameOngoing}
-        setLeaderboardVisible={setLeaderboardVisible}
+        setSubmitNameVisible={setSubmitNameVisible}
       />
     );
   }
