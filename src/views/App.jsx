@@ -37,7 +37,16 @@ function App() {
     }
   }, []);
 
-  if (gameOngoing && !leaderboardVisible) {
+  if (leaderboardVisible) {
+    return (
+      <Leaderboard
+        setGameOngoing={setGameOngoing}
+        setLeaderboardVisible={setLeaderboardVisible}
+      />
+    );
+  }
+
+  if (gameOngoing) {
     return (
       <Canvas
         setGameOngoing={setGameOngoing}
@@ -46,7 +55,7 @@ function App() {
     );
   }
 
-  if (!gameOngoing && !leaderboardVisible) {
+  if (!gameOngoing) {
     return (
       <>
         <Start startGame={startGame} />
@@ -58,15 +67,6 @@ function App() {
         </div>
         <Toaster />
       </>
-    );
-  }
-
-  if (!gameOngoing && leaderboardVisible) {
-    return (
-      <Leaderboard
-        setGameOngoing={setGameOngoing}
-        setGameFinished={setLeaderboardVisible}
-      />
     );
   }
 }
