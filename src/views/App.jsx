@@ -50,7 +50,7 @@ function App() {
     return (
       <Canvas
         setGameOngoing={setGameOngoing}
-        setGameFinished={setLeaderboardVisible}
+        setLeaderboardVisible={setLeaderboardVisible}
       />
     );
   }

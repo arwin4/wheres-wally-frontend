@@ -5,7 +5,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import SelectorPopup from './selector/SelectorPopup';
 import endTrackingGameDuration from '../utils/endTrackingGameDuration';
 
-export default function Canvas({ setGameOngoing, setGameFinished }) {
+export default function Canvas({ setGameOngoing, setLeaderboardVisible }) {
   // TODO: move to views/
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
@@ -94,7 +94,7 @@ export default function Canvas({ setGameOngoing, setGameFinished }) {
           toast.success('Finished!', { id: 'wallyVerification' });
           setTimeout(() => {
             toast.remove();
-            setGameFinished(true);
+            setLeaderboardVisible(true);
             setGameOngoing(false);
           }, 1000);
         } catch (error) {
@@ -127,5 +127,5 @@ export default function Canvas({ setGameOngoing, setGameFinished }) {
 
 Canvas.propTypes = {
   setGameOngoing: PropTypes.func.isRequired,
-  setGameFinished: PropTypes.func.isRequired,
+  setLeaderboardVisible: PropTypes.func.isRequired,
 };
