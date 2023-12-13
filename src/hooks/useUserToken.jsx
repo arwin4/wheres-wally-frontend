@@ -9,7 +9,7 @@ export default function useUserToken() {
 
     const fetchAndSetToken = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/tokens/user`);
+        const response = await fetch(`http://localhost:3000/user/token`);
         if (!response.ok) {
           throw new Error('Unable to fetch user token from API');
         }
