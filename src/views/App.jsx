@@ -5,6 +5,7 @@ import preloadIcons from '../utils/preloadIcons';
 // Components
 import Canvas from '../components/Canvas';
 import Start from '../components/Start';
+import Leaderboard from '../components/Leaderboard';
 
 // Hooks
 import useSessionToken from '../hooks/useSessionToken';
@@ -62,18 +63,10 @@ function App() {
 
   if (!gameOngoing && gameFinished) {
     return (
-      <>
-        <h1>Finished!</h1>
-        <button
-          type="button"
-          onClick={() => {
-            setGameOngoing(false);
-            setGameFinished(false);
-          }}
-        >
-          To home
-        </button>
-      </>
+      <Leaderboard
+        setGameOngoing={setGameOngoing}
+        setGameFinished={setGameFinished}
+      />
     );
   }
 }
