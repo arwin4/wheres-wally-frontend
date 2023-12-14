@@ -1,0 +1,23 @@
+.start-button {
+  margin: 20px 0;
+  height: 30px;
+  width: 200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: rgb(0, 0, 0, 57%) 5px solid;
+  border-radius: 20px;
+
+  font-size: 1.1rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(208, 208, 208);
+  }
+
+  &:active {
+    background-color: rgb(185, 185, 185);
+  }
+}

@@ -1,7 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+
+body {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0 0;
+
+  background-color: #e5e5f7;
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #8cb369 0,
+    #8cb369 1px,
+    #f2f3ae 0,
+    #f2f3ae 50%
+  );
+}
+
 #root {
   display: flex;
-  justify-content: center;
+  background-color: white;
+  background-color: rgb(234 241 255);
+  border-radius: 15px;
+}
+
+* {
+  font-family: 'DM Mono', sans-serif;
+}
+
+.game-explanation {
+  display: flex;
   flex-direction: column;
+  text-align: center;
+  padding: 10px 10px;
+  border: hsla(160, 22%, 46%, 0.725) 2px solid;
+  border-radius: 15px;
+
+  .explanation-text {
+    font-size: 1.1rem;
+    font-weight: normal;
+  }
+
+  .gallery {
+    display: grid;
+
+    @media (min-width: 768px) {
+      grid-auto-flow: column;
+    }
+  }
+
+  .start-button {
+    align-self: center;
+  }
+
+  .credit {
+    font-size: 1rem;
+  }
 }
 
 .generic-button {

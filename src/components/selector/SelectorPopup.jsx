@@ -63,6 +63,7 @@ export default function SelectorPopup({
         >
           <Icon icon="pixelarticons:close" height={50} />
         </button>
+        Which is it?
         <SelectionCarousel
           clickCoordinates={clickCoordinates}
           handleWallySelection={handleWallySelection}

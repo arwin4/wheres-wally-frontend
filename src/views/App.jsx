@@ -67,12 +67,39 @@ function App() {
   if (!gameOngoing) {
     return (
       <>
-        <Start startGame={startGame} />
-        <div className="credit">
-          <a href="https://www.youtube.com/watch?v=BR3kGw_FMOM">
-            Image credit.
-          </a>
-          {'  '} Used with permission.
+        <div className="game-explanation">
+          <h1 className="title">Find the sights!</h1>
+          <h2 className="explanation-text">
+            It&apos;s like <em>&quot;Where&apos;s Wally?&quot;</em> (AKA{' '}
+            <em>&quot;Where&apos;s Waldo?&quot;</em>).
+          </h2>
+          <h2 className="explanation-text">
+            Your mission is to find these three sights in the amusement park:
+          </h2>
+          <div className="gallery">
+            <div className="wally-container">
+              <img src="assets/wallies/fountain.png" alt="Fountain" />
+              <div className="image-description">Fountain</div>
+            </div>{' '}
+            <div className="wally-container">
+              <img src="assets/wallies/slide.png" alt="Slide" />
+              <div className="image-description">Slide</div>
+            </div>{' '}
+            <div className="wally-container">
+              <img
+                src="assets/wallies/lonely-island.png"
+                alt="Lonely island with person stranded on it"
+              />
+              <div className="image-description">Lonely island</div>
+            </div>
+          </div>
+          <Start startGame={startGame} />
+          <div className="credit">
+            <a href="https://www.youtube.com/watch?v=BR3kGw_FMOM">
+              Image credit.
+            </a>
+            {'  '} Used with permission.
+          </div>
         </div>
         <Toaster />
       </>
