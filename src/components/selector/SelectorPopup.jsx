@@ -34,7 +34,7 @@ export default function SelectorPopup({
 
   return (
     <div
-      className="selector-popup"
+      className="selector-popup fade-in"
       style={{
         top: selectorWrapperTop,
         left: selectorWrapperLeft,
@@ -58,10 +58,10 @@ export default function SelectorPopup({
         <button
           type="button"
           aria-label="Close selector"
-          className="selector-close generic-button"
+          className="selector-close"
           onClick={() => setSelectorVisible(false)}
         >
-          <Icon icon="pixelarticons:close" height={50} />
+          <Icon icon="pixelarticons:close" height={40} />
         </button>
         Which is it?
         <SelectionCarousel

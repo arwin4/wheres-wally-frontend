@@ -4,6 +4,17 @@
   justify-items: center;
 
   color: snow;
+
+  animation: fade-in 0.2s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .selector-menu {
@@ -16,7 +27,17 @@
   color: black;
   background-color: white;
 
+  border-radius: 20px;
+  border: black 2px solid;
+
+  box-shadow: 0px 5px 0px 6px rgb(0 0 0);
+
   > .selector-close {
-    width: 25px;
+    all: unset;
+    width: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
