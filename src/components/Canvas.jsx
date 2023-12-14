@@ -6,7 +6,6 @@ import SelectorPopup from './selector/SelectorPopup';
 import endTrackingGameDuration from '../utils/endTrackingGameDuration';
 
 export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
-  // TODO: move to views/
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
 
