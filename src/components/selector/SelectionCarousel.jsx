@@ -23,10 +23,12 @@ export default function SelectionCarousel({
 
   function handleNextImage() {
     if (hasNext) setImageIndex(imageIndex + 1);
+    else setImageIndex(0);
   }
 
   function handlePreviousImage() {
     if (hasPrevious) setImageIndex(imageIndex - 1);
+    else setImageIndex(wallyList.length - 1);
   }
 
   return (
