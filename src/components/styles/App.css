@@ -23,7 +23,11 @@ body {
   display: flex;
   background-color: white;
   background-color: rgb(234 241 255);
+
+  border: hsla(160, 22%, 46%, 0.725) 3px solid;
   border-radius: 15px;
+
+  box-shadow: 0px 0px 14px 4px rgb(0 0 0 / 44%);
 }
 
 * {
@@ -35,8 +39,6 @@ body {
   flex-direction: column;
   text-align: center;
   padding: 10px 10px;
-  border: hsla(160, 22%, 46%, 0.725) 2px solid;
-  border-radius: 15px;
 
   .explanation-text {
     font-size: 1.1rem;

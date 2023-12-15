@@ -4,5 +4,23 @@
   width: 90vw;
   height: 90vh;
 
-  overflow: scroll;
+  overflow: hidden;
+
+  @media (pointer: coarse) {
+    overflow: scroll;
+  }
+
+  border-radius: 15px;
+
+  .search-image {
+    margin-bottom: -5px;
+
+    &:hover {
+      cursor: grab;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
 }
