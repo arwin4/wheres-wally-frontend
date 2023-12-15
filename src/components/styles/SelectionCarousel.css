@@ -17,8 +17,12 @@
   }
 
   .carousel-arrow {
+    /* Alternative color
+     --background-color: #5478a4; */
+    --popup-background-color: #f2f3ae;
+
     all: unset;
-    background-color: white;
+    background-color: var(--popup-background-color);
     height: 50px;
     align-self: center;
 
@@ -26,12 +30,12 @@
 
     &.previous-image {
       border-radius: 30px 0px 0px 30px;
-      border-right-color: white;
+      border-right-color: var(--popup-background-color);
     }
 
     &.next-image {
       border-radius: 0px 30px 30px 0px;
-      border-left-color: white;
+      border-left-color: var(--popup-background-color);
     }
 
     &:hover {
