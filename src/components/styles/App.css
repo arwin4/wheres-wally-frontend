@@ -3,10 +3,10 @@
 body {
   display: flex;
   place-content: center;
-  place-items: center;
-  height: 100vh;
-  width: 100vw;
-  margin: 0 0;
+  align-items: center;
+
+  /* width: 100vw; */
+  margin: 30px 10px;
 
   background-color: #e5e5f7;
   background-size: 10px 10px;
@@ -17,10 +17,18 @@ body {
     #f2f3ae 0,
     #f2f3ae 50%
   );
+
+  @media (min-width: 768px) {
+    height: 100vh;
+    margin: 0 0;
+  }
 }
 
 #root {
   display: flex;
+  max-height: fit-content;
+  /* height: 90vh; */
+
   background-color: white;
   background-color: rgb(234 241 255);
 
@@ -38,7 +46,9 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 10px 10px;
+  align-self: center;
+  padding: 0px 25px;
+  padding-bottom: 20px;
 
   .explanation-text {
     font-size: 1.1rem;
@@ -47,6 +57,7 @@ body {
 
   .gallery {
     display: grid;
+    row-gap: 20px;
 
     @media (min-width: 768px) {
       grid-auto-flow: column;
