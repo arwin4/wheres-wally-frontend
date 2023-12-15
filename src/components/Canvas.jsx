@@ -87,16 +87,20 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
       }
 
       if (wallyValid && !gameFinished) {
-        // TODO: Add number
-        toast.success('Nice! (number) more to go!', {
-          duration: 3000,
-          id: 'wallyVerification',
-        });
         // Add location to found wally list, in order to display check
         setFoundWalliesCoordinates((current) => [
           ...current,
           centerCoordinates,
         ]);
+
+        // This assumes there are 3 wallies to be found.
+        toast.success(
+          `Nice! ${2 - foundWalliesCoordinates.length} more to go!`,
+          {
+            duration: 3000,
+            id: 'wallyVerification',
+          },
+        );
       }
 
       if (gameFinished) {
@@ -114,13 +118,13 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
             toast.remove();
             setSubmitNameVisible(true);
             setGameOngoing(false);
-          }, 1000);
+          }, 2000);
         } catch (error) {
           toast.error('Unable to end tracking game duration');
         }
       }
     },
-    [],
+    [foundWalliesCoordinates],
   );
 
   return (
