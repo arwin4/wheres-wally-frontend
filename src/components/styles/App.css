@@ -5,7 +5,6 @@ body {
   place-content: center;
   align-items: center;
 
-  /* width: 100vw; */
   margin: 30px 10px;
 
   background-color: #e5e5f7;
@@ -27,7 +26,6 @@ body {
 #root {
   display: flex;
   max-height: fit-content;
-  /* height: 90vh; */
 
   background-color: white;
   background-color: rgb(234 241 255);
