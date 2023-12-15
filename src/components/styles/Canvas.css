@@ -7,6 +7,7 @@
   overflow: hidden;
 
   @media (pointer: coarse) {
+    /* Attempt to hide scroll bars on touch screens */
     overflow: scroll;
   }
 
