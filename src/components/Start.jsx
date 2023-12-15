@@ -6,7 +6,7 @@ import './styles/Start.css';
 export default function Start({ startGame }) {
   return (
     <button className="start-button" type="button" onClick={startGame}>
-      Start!
+      Let&apos;s go!
     </button>
   );
 }

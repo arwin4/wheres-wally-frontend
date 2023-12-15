@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { InlineIcon } from '@iconify/react';
 import preloadIcons from '../utils/preloadIcons';
 
 // Components
@@ -93,12 +94,22 @@ function App() {
               <div className="image-description">Lonely island</div>
             </div>
           </div>
+          <h2 className="explanation-text">Can you find them all?</h2>
           <Start startGame={startGame} />
           <div className="credit">
-            <a href="https://www.youtube.com/watch?v=BR3kGw_FMOM">
-              Image credit.
-            </a>
-            {'  '} Used with permission.
+            <a
+              target="_blank"
+              href="https://www.youtube.com/watch?v=BR3kGw_FMOM"
+              rel="noreferrer"
+            >
+              Image credit
+              <InlineIcon
+                className="external-link-icon"
+                icon="pixelarticons:external-link"
+                height={15}
+              />
+            </a>{' '}
+            Used with permission.
           </div>
         </div>
         <Toaster />

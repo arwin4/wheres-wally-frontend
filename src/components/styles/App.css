@@ -57,6 +57,11 @@ body {
 
   .credit {
     font-size: 1rem;
+
+    .external-link-icon {
+      position: relative;
+      left: 3px;
+    }
   }
 }
 

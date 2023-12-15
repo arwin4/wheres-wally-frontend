@@ -1,13 +1,13 @@
 .start-button {
-  margin: 20px 0;
-  height: 30px;
+  margin-bottom: 10px;
+  height: 35px;
   width: 200px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border: rgb(0, 0, 0, 57%) 5px solid;
+  border: rgb(0, 0, 0, 57%) 4px solid;
   border-radius: 20px;
 
   font-size: 1.1rem;
