@@ -77,7 +77,8 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
         throw new Error('Unable to verify your selection');
       }
       const body = await response.json();
-      const { wallyValid, centerCoordinates, gameFinished } = body;
+      const { wallyValid, wallyAlreadyFound, centerCoordinates, gameFinished } =
+        body;
 
       if (!wallyValid) {
         toast.error(
@@ -86,7 +87,14 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
         );
       }
 
-      if (wallyValid && !gameFinished) {
+      if (wallyAlreadyFound) {
+        toast.error('You already found this', {
+          duration: 3000,
+          id: 'wallyVerification',
+        });
+      }
+
+      if (wallyValid && !wallyAlreadyFound && !gameFinished) {
         // Add location to found wally list, in order to display check
         setFoundWalliesCoordinates((current) => [
           ...current,
@@ -103,7 +111,7 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
         );
       }
 
-      if (gameFinished) {
+      if (gameFinished && !wallyAlreadyFound) {
         // Add location to found wally list, in order to display check
         setFoundWalliesCoordinates((current) => [
           ...current,
