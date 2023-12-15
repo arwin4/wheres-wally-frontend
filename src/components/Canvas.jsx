@@ -1,13 +1,21 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import './styles/Canvas.css';
 import toast, { Toaster } from 'react-hot-toast';
+
+// Components
 import SelectorPopup from './selector/SelectorPopup';
+import FoundWallyOverlay from './FoundWallyOverlay';
+
+// Utils
 import endTrackingGameDuration from '../utils/endTrackingGameDuration';
+
+// Style
+import './styles/Canvas.css';
 
 export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
+  const [foundWalliesCoordinates, setFoundWalliesCoordinates] = useState([]);
 
   useEffect(() => {
     // TODO: Fix panning too fast
@@ -69,7 +77,7 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
         throw new Error('Unable to verify your selection');
       }
       const body = await response.json();
-      const { wallyValid, gameFinished } = body;
+      const { wallyValid, centerCoordinates, gameFinished } = body;
 
       if (!wallyValid) {
         toast.error(
@@ -84,9 +92,20 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
           duration: 3000,
           id: 'wallyVerification',
         });
+        // Add location to found wally list, in order to display check
+        setFoundWalliesCoordinates((current) => [
+          ...current,
+          centerCoordinates,
+        ]);
       }
 
       if (gameFinished) {
+        // Add location to found wally list, in order to display check
+        setFoundWalliesCoordinates((current) => [
+          ...current,
+          centerCoordinates,
+        ]);
+
         try {
           await endTrackingGameDuration();
 
@@ -119,6 +138,7 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
           handleWallySelection={handleWallySelection}
         />
       )}
+      <FoundWallyOverlay foundWalliesCoordinates={foundWalliesCoordinates} />
       <Toaster />
     </div>
   );
