@@ -19,7 +19,7 @@
   .carousel-arrow {
     /* Alternative color
      --background-color: #5478a4; */
-    --popup-background-color: #86afe1;
+    --popup-background-color: #f2f3ae;
 
     all: unset;
     background-color: var(--popup-background-color);
