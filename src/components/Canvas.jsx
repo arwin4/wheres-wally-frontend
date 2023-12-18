@@ -18,27 +18,31 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
   const [foundWalliesCoordinates, setFoundWalliesCoordinates] = useState([]);
 
   useEffect(() => {
-    // TODO: Fix panning too fast
-
-    const imageContainer = document.querySelector('.image-container');
-
     // Pan image on mouse drag
+    const imageContainer = document.querySelector('.image-container');
     let isMouseDown = false;
     let wasDragged = false;
 
-    imageContainer.addEventListener('mousedown', () => {
+    // Location of drag start, relative to viewport
+    const start = { x: 0, y: 0 };
+
+    imageContainer.addEventListener('mousedown', (e) => {
       isMouseDown = true;
-      wasDragged = false; // Reset on mousedown, or selector will never open
+      wasDragged = false; // Reset on mousedown, or selector will never reopen
+
+      start.x = imageContainer.scrollLeft + e.clientX;
+      start.y = imageContainer.scrollTop + e.clientY;
     });
 
     imageContainer.addEventListener('mouseup', () => {
+      // Stop panning when mouse is up
       isMouseDown = false;
     });
 
     imageContainer.addEventListener('mousemove', (e) => {
       if (isMouseDown) {
-        imageContainer.scrollTop -= e.movementY;
-        imageContainer.scrollLeft -= e.movementX;
+        // ScrollTo calculation source: https://stackoverflow.com/a/68280346/22857578
+        imageContainer.scrollTo(start.x - e.clientX, start.y - e.clientY);
         wasDragged = true;
       }
     });
