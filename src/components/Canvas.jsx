@@ -27,6 +27,7 @@ export default function Canvas({
     const image = document.querySelector('.search-image');
 
     let isMouseDown = false;
+    let isMouseOut = false;
     let wasDragged = false;
 
     // Location of drag start, relative to viewport
@@ -34,6 +35,7 @@ export default function Canvas({
 
     image.addEventListener('mousedown', (e) => {
       isMouseDown = true;
+      isMouseOut = false;
       wasDragged = false; // Reset on mousedown, or selector will never reopen
 
       start.x = imageContainer.scrollLeft + e.clientX;
@@ -46,11 +48,17 @@ export default function Canvas({
     });
 
     image.addEventListener('mousemove', (e) => {
-      if (isMouseDown) {
+      if (isMouseDown && !isMouseOut) {
         // ScrollTo calculation source: https://stackoverflow.com/a/68280346/22857578
         imageContainer.scrollTo(start.x - e.clientX, start.y - e.clientY);
         wasDragged = true;
       }
+    });
+
+    image.addEventListener('mouseout', () => {
+      // Stop panning when mouse exits image
+      isMouseOut = true;
+      isMouseDown = false;
     });
 
     // Save click coordinates
