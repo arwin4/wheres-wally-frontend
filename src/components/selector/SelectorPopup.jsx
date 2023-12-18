@@ -10,6 +10,7 @@ export default function SelectorPopup({
   clickCoordinates,
   setSelectorVisible,
   handleWallySelection,
+  clientY,
 }) {
   const { x, y } = clickCoordinates;
 
@@ -27,7 +28,7 @@ export default function SelectorPopup({
 
   // Put the menu on top when user clicks near the bottom of the image,
   // preventing the menu from appearing outside the image
-  if (y > 1000) {
+  if (clientY > 400) {
     selectorMenuOrder = -1;
     selectorWrapperTop -= selectorWrapperHeight + rowGap; // Recalculate offset
   }
@@ -80,4 +81,5 @@ SelectorPopup.propTypes = {
   }).isRequired,
   setSelectorVisible: PropTypes.func.isRequired,
   handleWallySelection: PropTypes.func.isRequired,
+  clientY: PropTypes.number.isRequired,
 };

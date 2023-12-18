@@ -20,6 +20,7 @@ export default function Canvas({
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
   const [foundWalliesCoordinates, setFoundWalliesCoordinates] = useState([]);
+  const [clientY, setClientY] = useState(null);
 
   useEffect(() => {
     // Pan image on mouse drag
@@ -72,6 +73,7 @@ export default function Canvas({
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
       });
+      setClientY(e.clientY);
       setSelectorVisible(true);
     });
   }, []);
@@ -169,6 +171,7 @@ export default function Canvas({
           clickCoordinates={clickCoordinates}
           setSelectorVisible={setSelectorVisible}
           handleWallySelection={handleWallySelection}
+          clientY={clientY}
         />
       )}
       <FoundWallyOverlay foundWalliesCoordinates={foundWalliesCoordinates} />
