@@ -12,7 +12,11 @@ import endTrackingGameDuration from '../utils/endTrackingGameDuration';
 // Style
 import './styles/Canvas.css';
 
-export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
+export default function Canvas({
+  setGameOngoing,
+  setSubmitNameVisible,
+  setWalliesFound,
+}) {
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
   const [foundWalliesCoordinates, setFoundWalliesCoordinates] = useState([]);
@@ -106,6 +110,8 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
           centerCoordinates,
         ]);
 
+        setWalliesFound((current) => [...current, wallyName]);
+
         // This assumes there are 3 wallies to be found.
         toast.success(
           `Nice! ${2 - foundWalliesCoordinates.length} more to go!`,
@@ -122,6 +128,8 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
           ...current,
           centerCoordinates,
         ]);
+
+        setWalliesFound((current) => [...current, wallyName]);
 
         try {
           await endTrackingGameDuration();
@@ -164,4 +172,5 @@ export default function Canvas({ setGameOngoing, setSubmitNameVisible }) {
 Canvas.propTypes = {
   setGameOngoing: PropTypes.func.isRequired,
   setSubmitNameVisible: PropTypes.func.isRequired,
+  setWalliesFound: PropTypes.func.isRequired,
 };

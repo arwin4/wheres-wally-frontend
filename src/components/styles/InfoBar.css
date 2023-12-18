@@ -1,0 +1,31 @@
+.infobar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 150px;
+  gap: 20px;
+
+  .track-wallies {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .wally-wrapper {
+      position: relative;
+
+      & img {
+        border-radius: 20px;
+      }
+
+      .tracked-wally-overlay {
+        position: absolute;
+        z-index: 1;
+        left: 14px;
+        top: 19px;
+      }
+    }
+  }
+}

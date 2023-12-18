@@ -8,6 +8,7 @@ import Canvas from '../components/Canvas';
 import Start from '../components/Start';
 import Leaderboard from '../components/Leaderboard';
 import SubmitName from '../components/SubmitName';
+import InfoBar from '../components/InfoBar';
 
 // Hooks
 import useUserToken from '../hooks/useUserToken';
@@ -28,6 +29,7 @@ function App() {
   const [gameOngoing, setGameOngoing] = useState(false);
   const [submitNameVisible, setSubmitNameVisible] = useState(false);
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
+  const [walliesFound, setWalliesFound] = useState([]);
 
   const startGame = useCallback(async () => {
     try {
@@ -58,10 +60,14 @@ function App() {
 
   if (gameOngoing) {
     return (
-      <Canvas
-        setGameOngoing={setGameOngoing}
-        setSubmitNameVisible={setSubmitNameVisible}
-      />
+      <div className="canvas-container">
+        <InfoBar walliesFound={walliesFound} setGameOngoing={setGameOngoing} />
+        <Canvas
+          setGameOngoing={setGameOngoing}
+          setSubmitNameVisible={setSubmitNameVisible}
+          setWalliesFound={setWalliesFound}
+        />
+      </div>
     );
   }
 

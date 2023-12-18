@@ -1,3 +1,8 @@
+.canvas-container {
+  display: flex;
+  max-width: 90vw;
+}
+
 .image-container {
   position: relative;
 
