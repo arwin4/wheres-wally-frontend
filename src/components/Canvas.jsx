@@ -25,6 +25,10 @@ export default function Canvas({
   useEffect(() => {
     // Pan image on mouse drag
     const imageContainer = document.querySelector('.image-container');
+
+    // Center image on load (roughly)
+    imageContainer.scrollTo(600, 500);
+
     const image = document.querySelector('.search-image');
 
     let isMouseDown = false;
