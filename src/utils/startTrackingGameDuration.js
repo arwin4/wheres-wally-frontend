@@ -1,13 +1,14 @@
 export default async function startTrackingGameDuration() {
-  const response = await fetch(`http://localhost:3000/duration/start`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
+  const userId = localStorage.getItem('userId');
+  const response = await fetch(
+    `http://localhost:3000/user/${userId}/duration/start`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     },
-    body: JSON.stringify({
-      userToken: localStorage.getItem('userToken'),
-    }),
-  });
+  );
 
   if (response.status === 204) return false;
 

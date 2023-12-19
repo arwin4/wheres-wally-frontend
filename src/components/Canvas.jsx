@@ -94,7 +94,7 @@ export default function Canvas({
         body: JSON.stringify({
           clickCoordinates: newClickCoordinates,
           wallyName,
-          userToken: localStorage.getItem('userToken'),
+          userId: localStorage.getItem('userId'),
         }),
       });
       if (!response.ok) {

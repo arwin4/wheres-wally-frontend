@@ -42,7 +42,7 @@ export default function Leaderboard({ setGameOngoing, setLeaderboardVisible }) {
         {leaderboard.map((user) => (
           <div
             className={`user-wrapper ${
-              user.userId === localStorage.getItem('userToken')
+              user.userId === localStorage.getItem('userId')
                 ? 'highlight-user'
                 : ''
             }`}

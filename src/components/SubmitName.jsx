@@ -8,16 +8,15 @@ export default function SubmitName({
   setLeaderboardVisible,
 }) {
   const [loading, setLoading] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [score, setScore] = useState('');
 
   useEffect(() => {
     const getUserScore = async () => {
       try {
-        const userToken = localStorage.getItem('userToken');
+        const userId = localStorage.getItem('userId');
         const response = await fetch(
-          `http://localhost:3000/user/score/${userToken}`,
+          `http://localhost:3000/user/${userId}/score`,
           {
             method: 'GET',
           },
@@ -40,13 +39,13 @@ export default function SubmitName({
     e.preventDefault();
     setLoading(true);
 
-    const response = await fetch(`http://localhost:3000/user/name`, {
+    const userId = localStorage.getItem('userId');
+    const response = await fetch(`http://localhost:3000/user/${userId}/name`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userToken: localStorage.getItem('userToken'),
         name: e.target.name.value,
       }),
     });

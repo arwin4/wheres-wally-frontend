@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-export default function useUserToken() {
+export default function useUserId() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // userToken is persistent across reloads
-    if (localStorage.getItem('userToken')) return;
+    // userId is persistent across reloads
+    if (localStorage.getItem('userId')) return;
 
     const fetchAndSetToken = async () => {
       try {
@@ -14,8 +14,8 @@ export default function useUserToken() {
           throw new Error('Unable to fetch user token from API');
         }
         const responseBody = await response.json();
-        const token = responseBody.userToken;
-        localStorage.setItem('userToken', token);
+        const token = responseBody.userId;
+        localStorage.setItem('userId', token);
         setError(''); // Prevent error state persisting
       } catch (err) {
         setError(err.message);

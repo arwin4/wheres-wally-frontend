@@ -11,7 +11,7 @@ import SubmitName from '../components/SubmitName';
 import InfoBar from '../components/InfoBar';
 
 // Hooks
-import useUserToken from '../hooks/useUserToken';
+import useUserId from '../hooks/useUserId';
 
 // Utils
 import markWalliesAsNotFound from '../utils/markWalliesAsNotFound';
@@ -25,7 +25,7 @@ import InstructionModal from '../components/InstructionModal';
 function App() {
   preloadIcons();
   preloadSearchImage();
-  useUserToken();
+  useUserId();
 
   const [gameOngoing, setGameOngoing] = useState(false);
   const [submitNameVisible, setSubmitNameVisible] = useState(false);
