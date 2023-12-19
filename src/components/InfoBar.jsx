@@ -4,13 +4,9 @@ import PropTypes from 'prop-types';
 import './styles/InfoBar.css';
 import { Icon } from '@iconify/react';
 
-export default function InfoBar({ walliesFound, setGameOngoing }) {
+export default function InfoBar({ walliesFound }) {
   return (
     <div className="infobar">
-      <button type="button" onClick={() => setGameOngoing(false)}>
-        Leave game
-      </button>
-
       <div className="track-wallies">
         <div className="wally-wrapper">
           <img
@@ -59,5 +55,4 @@ export default function InfoBar({ walliesFound, setGameOngoing }) {
 
 InfoBar.propTypes = {
   walliesFound: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setGameOngoing: PropTypes.func.isRequired,
 };

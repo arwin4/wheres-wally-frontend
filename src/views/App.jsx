@@ -63,7 +63,7 @@ function App() {
   if (gameOngoing) {
     return (
       <div className="canvas-container">
-        <InfoBar walliesFound={walliesFound} setGameOngoing={setGameOngoing} />
+        <InfoBar walliesFound={walliesFound} />
         <Canvas
           setGameOngoing={setGameOngoing}
           setSubmitNameVisible={setSubmitNameVisible}
