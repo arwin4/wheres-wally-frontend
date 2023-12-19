@@ -104,10 +104,10 @@ export default function Canvas({
         body;
 
       if (!wallyValid) {
-        toast.error(
-          `That's not a 'wally'! Or you did not identify it correctly.`,
-          { duration: 3000, id: 'wallyVerification' },
-        );
+        toast.error(`That's not correct`, {
+          duration: 3000,
+          id: 'wallyVerification',
+        });
       }
 
       if (wallyAlreadyFound) {
