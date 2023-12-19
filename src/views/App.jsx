@@ -81,13 +81,13 @@ function App() {
   if (!gameOngoing) {
     return (
       <>
-        <div className="game-explanation">
+        <div className="main">
           <h1 className="title">Find the sights!</h1>
-          <h2 className="explanation-text">
+          <h2 className="text">
             It&apos;s like <em>&quot;Where&apos;s Wally?&quot;</em> (AKA{' '}
             <em>&quot;Where&apos;s Waldo?&quot;</em>).
           </h2>
-          <h2 className="explanation-text">
+          <h2 className="text">
             Your mission is to find these three sights in the amusement park:
           </h2>
           <div className="gallery">
@@ -107,7 +107,7 @@ function App() {
               <div className="image-description">Lonely island</div>
             </div>
           </div>
-          <h2 className="explanation-text">Can you find them all?</h2>
+          <h2 className="text">Can you find them all?</h2>
           <Start startGame={startGame} />
           <div className="credit">
             <a

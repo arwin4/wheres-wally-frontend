@@ -40,7 +40,7 @@ body {
   font-family: 'DM Mono', sans-serif;
 }
 
-.game-explanation {
+.main {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -48,7 +48,7 @@ body {
   padding: 0px 25px;
   padding-bottom: 20px;
 
-  .explanation-text {
+  .text {
     font-size: 1.1rem;
     font-weight: normal;
   }
@@ -63,6 +63,7 @@ body {
   }
 
   .credit {
+    margin-top: 10px;
     font-size: 1rem;
 
     .external-link-icon {
@@ -73,8 +74,9 @@ body {
 }
 
 .button {
-  margin-bottom: 10px;
-  height: 35px;
+  padding: 5px 0;
+  height: fit-content;
+
   width: 200px;
 
   display: flex;

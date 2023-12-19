@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/SubmitName.css';
+
 export default function SubmitName({
   setSubmitNameVisible,
   setLeaderboardVisible,
@@ -59,22 +61,29 @@ export default function SubmitName({
   if (loading) return <>Loading...</>;
 
   return (
-    <div className="name-form-container">
+    <div className="submit-name main">
       <h1>Congrats! You found them all!</h1>
-      <h2>It took you {score}.</h2>
-      <h2>Enter your name to get your score on the public leaderboard.</h2>
+      <h2 className="text">
+        It took you <em>{score}</em>.
+      </h2>
+      <h2 className="text">
+        Enter your name to get your score on the public leaderboard.
+      </h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">
-            Your name
+            Your name:
             <input type="text" id="name" name="name" maxLength="100" required />
           </label>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit button">
+          Submit
+        </button>
       </form>
       <div className="error">{error}</div>
       <button
         type="button"
+        className="no-save button"
         onClick={() => {
           setError('');
           setSubmitNameVisible(false);

@@ -1,0 +1,37 @@
+.leaderboard {
+  display: grid;
+  margin-top: 10px;
+  width: clamp(220px, 75vw, 500px);
+
+  .user-wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    margin-top: 10px;
+
+    .user-name {
+      max-width: 90%;
+      text-align: start;
+      word-break: break-all;
+    }
+
+    .user-score {
+      text-align: end;
+    }
+  }
+
+  .highlight-user {
+    animation: highlight-user-background-fadein 1s 0.5s linear forwards;
+    border-radius: 5px;
+    padding: 5px;
+
+    & * {
+      padding: 10px;
+    }
+  }
+}
+
+@keyframes highlight-user-background-fadein {
+  to {
+    background-color: hsla(160, 22%, 46%, 0.725);
+  }
+}
