@@ -20,6 +20,7 @@ import startTrackingGameDuration from '../utils/startTrackingGameDuration';
 
 // Style
 import '../components/styles/App.css';
+import InstructionModal from '../components/InstructionModal';
 
 function App() {
   preloadIcons();
@@ -29,6 +30,7 @@ function App() {
   const [gameOngoing, setGameOngoing] = useState(false);
   const [submitNameVisible, setSubmitNameVisible] = useState(false);
   const [leaderboardVisible, setLeaderboardVisible] = useState(false);
+  const [instructionModalVisible, setInstructionModalVisible] = useState(true);
   const [walliesFound, setWalliesFound] = useState([]);
 
   const startGame = useCallback(async () => {
@@ -67,6 +69,11 @@ function App() {
           setSubmitNameVisible={setSubmitNameVisible}
           setWalliesFound={setWalliesFound}
         />
+        {instructionModalVisible && (
+          <InstructionModal
+            setInstructionModalVisible={setInstructionModalVisible}
+          />
+        )}
       </div>
     );
   }
