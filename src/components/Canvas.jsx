@@ -86,17 +86,20 @@ export default function Canvas({
   const handleWallySelection = useCallback(
     async (wallyName, newClickCoordinates) => {
       setSelectorVisible(false);
-      const response = await fetch(`http://localhost:3000/wallies`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `https://arwin-wheres-wally-backend.fly.dev/wallies`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            clickCoordinates: newClickCoordinates,
+            wallyName,
+            userId: localStorage.getItem('userId'),
+          }),
         },
-        body: JSON.stringify({
-          clickCoordinates: newClickCoordinates,
-          wallyName,
-          userId: localStorage.getItem('userId'),
-        }),
-      });
+      );
       if (!response.ok) {
         throw new Error('Unable to verify your selection');
       }

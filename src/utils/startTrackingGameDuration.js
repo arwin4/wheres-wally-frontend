@@ -1,7 +1,7 @@
 export default async function startTrackingGameDuration() {
   const userId = localStorage.getItem('userId');
   const response = await fetch(
-    `http://localhost:3000/user/${userId}/duration/start`,
+    `https://arwin-wheres-wally-backend.fly.dev/user/${userId}/duration/start`,
     {
       method: 'PUT',
       headers: {

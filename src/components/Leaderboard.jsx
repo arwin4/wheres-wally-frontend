@@ -10,9 +10,12 @@ export default function Leaderboard({ setGameOngoing, setLeaderboardVisible }) {
   useEffect(() => {
     const getLeaderboard = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/leaderboard`, {
-          method: 'GET',
-        });
+        const response = await fetch(
+          `https://arwin-wheres-wally-backend.fly.dev/leaderboard`,
+          {
+            method: 'GET',
+          },
+        );
         const responseBody = await response.json();
         setLeaderboard(responseBody);
         setError('');

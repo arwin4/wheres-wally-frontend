@@ -9,7 +9,9 @@ export default function useUserId() {
 
     const fetchAndSetToken = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/user/token`);
+        const response = await fetch(
+          `https://arwin-wheres-wally-backend.fly.dev/user/token`,
+        );
         if (!response.ok) {
           throw new Error('Unable to fetch user token from API');
         }

@@ -16,7 +16,7 @@ export default function SubmitName({
       try {
         const userId = localStorage.getItem('userId');
         const response = await fetch(
-          `http://localhost:3000/user/${userId}/score`,
+          `https://arwin-wheres-wally-backend.fly.dev/user/${userId}/score`,
           {
             method: 'GET',
           },
@@ -40,15 +40,18 @@ export default function SubmitName({
     setLoading(true);
 
     const userId = localStorage.getItem('userId');
-    const response = await fetch(`http://localhost:3000/user/${userId}/name`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      `https://arwin-wheres-wally-backend.fly.dev/user/${userId}/name`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: e.target.name.value,
+        }),
       },
-      body: JSON.stringify({
-        name: e.target.name.value,
-      }),
-    });
+    );
 
     if (response.status !== 200) {
       setError('Sorry, unable to save your name.');
