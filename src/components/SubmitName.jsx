@@ -8,6 +8,7 @@ export default function SubmitName({
   setLeaderboardVisible,
 }) {
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [score, setScore] = useState('');
 
@@ -37,6 +38,7 @@ export default function SubmitName({
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
 
     const response = await fetch(`http://localhost:3000/user/name`, {
       method: 'PUT',
@@ -58,7 +60,7 @@ export default function SubmitName({
     }
   }
 
-  if (loading) return <>Loading...</>;
+  if (loading) return <div className="loading main">Loading...</div>;
 
   return (
     <div className="submit-name main">

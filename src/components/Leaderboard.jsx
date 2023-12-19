@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import './styles/Leaderboard.css';
 
 export default function Leaderboard({ setGameOngoing, setLeaderboardVisible }) {
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [leaderboard, setLeaderboard] = useState([]);
 
@@ -16,18 +15,14 @@ export default function Leaderboard({ setGameOngoing, setLeaderboardVisible }) {
         });
         const responseBody = await response.json();
         setLeaderboard(responseBody);
-        setLoading(false);
         setError('');
       } catch (err) {
         setError('Unable to fetch leaderboard');
-      } finally {
-        setLoading(false);
       }
     };
     getLeaderboard();
   }, []);
 
-  if (loading) return <>Loading...</>;
   if (error) return <h1>{error}</h1>;
 
   return (
