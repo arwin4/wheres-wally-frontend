@@ -16,6 +16,7 @@ export default function Canvas({
   setGameOngoing,
   setSubmitNameVisible,
   setWalliesFound,
+  setLeaderboardVisible,
 }) {
   const [clickCoordinates, setClickCoordinates] = useState({ x: 1, y: 1 });
   const [selectorVisible, setSelectorVisible] = useState(false);
@@ -146,13 +147,20 @@ export default function Canvas({
         setWalliesFound((current) => [...current, wallyName]);
 
         try {
-          await endTrackingGameDuration();
-
           toast.success('Finished!', { id: 'wallyVerification' });
+
+          const scoreRecorded = await endTrackingGameDuration();
+
           setTimeout(() => {
             toast.remove();
-            setSubmitNameVisible(true);
             setGameOngoing(false);
+
+            // Next screen depends on whether user already has a score submitted
+            if (scoreRecorded) {
+              setSubmitNameVisible(true);
+            } else {
+              setLeaderboardVisible(true);
+            }
           }, 2000);
         } catch (error) {
           toast.error('Unable to end tracking game duration');
@@ -188,4 +196,5 @@ Canvas.propTypes = {
   setGameOngoing: PropTypes.func.isRequired,
   setSubmitNameVisible: PropTypes.func.isRequired,
   setWalliesFound: PropTypes.func.isRequired,
+  setLeaderboardVisible: PropTypes.func.isRequired,
 };

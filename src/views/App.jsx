@@ -68,6 +68,7 @@ function App() {
           setGameOngoing={setGameOngoing}
           setSubmitNameVisible={setSubmitNameVisible}
           setWalliesFound={setWalliesFound}
+          setLeaderboardVisible={setLeaderboardVisible}
         />
         {instructionModalVisible && (
           <InstructionModal

@@ -9,5 +9,9 @@ export default async function startTrackingGameDuration() {
     }),
   });
 
+  if (response.status === 204) return false;
+
   if (!response.ok) throw new Error();
+
+  return true;
 }
