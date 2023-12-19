@@ -1,31 +1,38 @@
 .infobar {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  width: 150px;
-  gap: 20px;
+  padding: 5px 0;
 
-  .track-wallies {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  row-gap: 20px;
+  column-gap: 5px;
 
-    .wally-wrapper {
-      position: relative;
+  .wally-wrapper {
+    display: grid;
+    position: relative;
 
-      & img {
-        border-radius: 20px;
-      }
+    & img {
+      place-self: center;
+      border-radius: 20px;
+      width: 90px;
+    }
 
-      .tracked-wally-overlay {
-        position: absolute;
-        z-index: 1;
-        left: 14px;
-        top: 19px;
+    .tracked-wally-overlay {
+      position: absolute;
+      z-index: 1;
+      left: 8px;
+      top: 10px;
+
+      @media (min-width: 768px) {
+        top: 12px;
+        left: 8px;
       }
     }
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: column;
+    padding: 0 5px;
   }
 }
