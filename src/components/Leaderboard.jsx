@@ -29,7 +29,7 @@ export default function Leaderboard({ setGameOngoing, setLeaderboardVisible }) {
   if (error) return <h1>{error}</h1>;
 
   return (
-    <div className="main">
+    <div className="leaderboard-container main">
       <h1>Leaderboard</h1>
       <button
         type="button"

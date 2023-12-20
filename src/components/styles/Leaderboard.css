@@ -1,3 +1,7 @@
+.leaderboard-container {
+  max-height: 85vh;
+}
+
 .leaderboard {
   display: grid;
   margin-top: 10px;
