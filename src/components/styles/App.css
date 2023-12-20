@@ -103,6 +103,11 @@ body {
   &:active {
     background-color: rgb(185, 185, 185);
   }
+
+  &:focus-visible {
+    border-color: #8cb369;
+    background-color: #8cb369;
+  }
 }
 
 .modal {

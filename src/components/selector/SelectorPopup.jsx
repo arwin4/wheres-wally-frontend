@@ -59,7 +59,7 @@ export default function SelectorPopup({
         <button
           type="button"
           aria-label="Close selector"
-          className="selector-close"
+          className="selector-close icon-button"
           onClick={() => setSelectorVisible(false)}
         >
           <Icon icon="pixelarticons:close" height={40} />

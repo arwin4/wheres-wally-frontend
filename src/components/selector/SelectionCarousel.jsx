@@ -36,13 +36,13 @@ export default function SelectionCarousel({
       <button
         type="button"
         aria-label="Previous image"
-        className="previous-image carousel-arrow"
+        className="previous-image carousel-arrow icon-button"
         onClick={handlePreviousImage}
       >
         <Icon icon="pixelarticons:chevron-left" height={50} />
       </button>
       <button
-        className="selection-button"
+        className="selection-button icon-button"
         type="button"
         onClick={() =>
           handleWallySelection(wallyList[imageIndex].name, clickCoordinates)
@@ -57,7 +57,7 @@ export default function SelectionCarousel({
       <button
         type="button"
         aria-label="Next image"
-        className="next-image carousel-arrow"
+        className="next-image carousel-arrow icon-button"
         onClick={handleNextImage}
       >
         <Icon icon="pixelarticons:chevron-right" height={50} />
