@@ -47,6 +47,7 @@ body {
   align-self: center;
   padding: 0px 25px;
   padding-bottom: 20px;
+  max-height: 85vh;
 
   .text {
     font-size: 1.1rem;
