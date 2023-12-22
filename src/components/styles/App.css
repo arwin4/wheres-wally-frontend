@@ -30,8 +30,8 @@ body {
   background-color: white;
   background-color: rgb(234 241 255);
 
-  border: hsla(160, 22%, 46%, 0.725) 3px solid;
-  border-radius: 15px;
+  border: hsla(160, 22%, 46%, 0.725) 10px solid;
+  border-radius: 30px;
 
   box-shadow: 0px 0px 14px 4px rgb(0 0 0 / 44%);
 }
